@@ -1,4 +1,4 @@
-public class Text {
+public class Main {
     /**
      * This toolbox class deals with text based outputs.
      * For example, print() statements, println() statements, and more.
@@ -14,7 +14,7 @@ public class Text {
         System.out.println(s);
     }
 
-    //Write Simple Text, a Number of times
+    //Write Simple Text, int n Number of times
     public static void write (String s, int n){
         for (int i = 0; i < n; i++){
             write(s);
@@ -33,12 +33,7 @@ public class Text {
         }
     }
 
-    //Allows for writesl or writeSL to work.
-    //Just makes it easier for programmer preference.
-    public static void writeSl (String s, int n){
-        writesl(s,n);
-    }
-
+    
     //Writes a single line with the space option.
     public static void writesl (String s, int n, boolean space){
         for (int i = 0; i < n; i++){
@@ -68,20 +63,20 @@ public class Text {
                 System.out.print(s);
             }
         }
-        b();
+        
     }
 
     //Allows the user to toggle between a divider and/or space separator,
     // and then select the divider desired as a char
     // when repeating a single println statement (using writesl).
-    public static void border (String s, int n, boolean space, boolean divider, char c){
+    public static void writesl(String s, int n, boolean space, boolean divider, char c){
         if (space && divider) {
             for (int i = 0; i < n; i++) {
-                System.out.print(s + " " + c + " ");
+                System.out.print(s + spaceRet() + c + spaceRet());
             }
         } else if (space){
             for (int i  = 0; i < n; i++){
-                System.out.print(s + " ");
+                System.out.print(s + spaceRet());
             }
         } else if (divider){
             for (int i  = 0; i < n; i++){
@@ -92,7 +87,7 @@ public class Text {
                 System.out.print(s);
             }
         }
-        b();
+        
     }
 
     //Skips a line.
@@ -107,16 +102,30 @@ public class Text {
         }
     }
 
-    //Ads a space.
+    //Adds a space.
     public static void space(){
         writesl(" ");
     }
 
-    //Ads n number of spaces
+    //Returns a space.
+    public static String spaceRet(){
+        return " ";
+    }
+
+    //Adds n number of spaces
     public static void space(int n){
         for (int i = 0; i < n; i++){
             space();
         }
+    }
+
+    //Retunrs n number of spaces
+    public static String spaceRet(int n){
+        String s = "";
+        for (int i = 0; i < n; i++){
+            s = s + spaceRet();
+        }
+        return s;
     }
 
 
