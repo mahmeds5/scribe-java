@@ -1,4 +1,4 @@
-public class Main {
+public class Text {
     /**
      * This toolbox class deals with text based outputs.
      * For example, print() statements, println() statements, and more.
