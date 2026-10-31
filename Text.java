@@ -13,12 +13,26 @@ public class Text {
     public static void write(String s){
         System.out.println(s);
     }
-
+    
+    //Return Simple Text
+    public static String writeRet(String s){
+        return s;
+    }
+    
     //Write Simple Text, int n Number of times
     public static void write (String s, int n){
         for (int i = 0; i < n; i++){
             write(s);
         }
+    }
+
+    //Return Simple Text, int n Number of times
+    public static String writeRet (String s, int n){
+        String temp = "";
+        for (int i = 0; i < n; i++){
+            temp = temp + s;
+        }
+        return temp;
     }
 
     //Write Simple Text
