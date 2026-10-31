@@ -18,33 +18,48 @@ writesl("Hi", 3, true);
 ```
 
 ## Setup
-1. Copy the `scribe` folder into your `src` folder
-2. Add the imports you need at the top of your file:
+1. Copy the `scribe` folder into your project's `src` folder
+2. Add this import at the top of your file:
 ```java
 import static scribe.Text.*;
-import static scribe.Draw.*;
 ```
 
-## Text
+## Methods
+
+### Printing (new line)
 | Method | What it does |
 |---|---|
 | `write(String s)` | Prints text, then a new line |
 | `write(String s, int n)` | Prints the text `n` times, one per line |
-| `writesl(String s)` | Prints text on the same line |
-| `writesl(String s, int n)` | Prints the text `n` times on one line |
-| `writesl(String s, int n, boolean space)` | Same, with an optional space after each one |
-| `writesl(String s, int n, boolean space, boolean divider)` | Same, with optional space and `\|` divider |
-| `b()` / `b(int n)` | Skips one line / `n` lines |
-| `space()` / `space(int n)` | Prints one space / `n` spaces |
 
-## Draw
+### Printing (same line)
 | Method | What it does |
 |---|---|
-| `border(String s, int n, boolean space, boolean divider, char c)` | Repeats `s` `n` times with an optional space and a custom divider char, then ends the line |
+| `writesl(String s)` | Prints text, stays on the same line |
+| `writesl(String s, int n)` | Prints the text `n` times in a row |
+| `writesl(String s, int n, boolean space)` | Same, with an optional space after each one |
+| `writesl(String s, int n, boolean space, boolean divider)` | Same, with an optional `\|` divider |
+| `writesl(String s, int n, boolean space, boolean divider, char c)` | Same, but you pick the divider character |
+
+### Spacing
+| Method | What it does |
+|---|---|
+| `b()` / `b(int n)` | Skips one line / `n` lines |
+| `space()` / `space(int n)` | Prints one space / `n` spaces |
+| `spaceRet()` / `spaceRet(int n)` | Returns one space / `n` spaces as a String (doesn't print) |
 
 ## Examples
 ```java
-writesl("Hi", 3, true);              // Hi Hi Hi
-writesl("Hi", 3, true, true);        // Hi | Hi | Hi |
-border("-", 5, true, true, '+');     // - + - + - + - + - +
+write("Hello", 2);                    // Hello
+                                      // Hello
+writesl("Hi", 3, true);               // Hi Hi Hi
+writesl("Hi", 3, true, true);         // Hi | Hi | Hi |
+writesl("-", 5, false, true, '+');    // -+-+-+-+-+
+writesl("-", 5, true, true, '+');     // - + - + - + - + - +
+
+write("Name:" + spaceRet(3) + "Sam"); // Name:   Sam
 ```
+
+## Notes
+- Methods that print on the same line (`writesl`) don't end the line. Use `b()` after them if you want to move on.
+- `spaceRet` returns a String, so you can drop it inside other text.
