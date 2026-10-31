@@ -41,12 +41,18 @@ import static scribe.Text.*;
 | `writesl(String s, int n, boolean space, boolean divider)` | Same, with an optional `\|` divider |
 | `writesl(String s, int n, boolean space, boolean divider, char c)` | Same, but you pick the divider character |
 
+### Returning text (doesn't print)
+| Method | What it does |
+|---|---|
+| `writeRet(String s)` | Returns the text as is (kinda useless, but it's there for consistency) |
+| `writeRet(String s, int n)` | Returns the text repeated `n` times, no line breaks |
+| `spaceRet()` / `spaceRet(int n)` | Returns one space / `n` spaces |
+
 ### Spacing
 | Method | What it does |
 |---|---|
 | `b()` / `b(int n)` | Skips one line / `n` lines |
 | `space()` / `space(int n)` | Prints one space / `n` spaces |
-| `spaceRet()` / `spaceRet(int n)` | Returns one space / `n` spaces as a String (doesn't print) |
 
 ## Examples
 ```java
@@ -57,9 +63,13 @@ writesl("Hi", 3, true, true);         // Hi | Hi | Hi |
 writesl("-", 5, false, true, '+');    // -+-+-+-+-+
 writesl("-", 5, true, true, '+');     // - + - + - + - + - +
 
+String line = writeRet("=", 10);      // "=========="
+write(line);                          // ==========
 write("Name:" + spaceRet(3) + "Sam"); // Name:   Sam
 ```
 
 ## Notes
-- Methods that print on the same line (`writesl`) don't end the line. Use `b()` after them if you want to move on.
-- `spaceRet` returns a String, so you can drop it inside other text.
+- `writesl` methods don't end the line. Use `b()` after them to move on.
+- `writeRet` and `spaceRet` return a String, so you can store them or put them inside other text.
+- `writeRet(String s)` just hands back what you give it. It's pretty useless on its own, but it's there so the `write` / `writeRet` pair stays matched.
+- `writeRet(String s, int n)` joins the text with no line breaks, unlike `write(String s, int n)`, which prints one per line.
